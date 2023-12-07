@@ -13,7 +13,7 @@ fs.readFile('input.txt', 'utf-8', (err, data) => {
   // put each line into and array
   let arrayOfData = data.split('\n')
 
-  let line = arrayOfData.map((ele) => {
+  let replaceLinesInArray = arrayOfData.map((ele) => {
     const newLine = ele
       .replaceAll('one', 'o1e')
       .replaceAll('two', 't2o')
@@ -27,8 +27,7 @@ fs.readFile('input.txt', 'utf-8', (err, data) => {
     return newLine
   })
 
-  
-  let splitEachIndexAndReturnNums = line.map((value) => {
+  let splitEachIndexAndReturnNums = replaceLinesInArray.map((value) => {
     let newElement = value.split('')
     let findStrings = newElement.map((str) => {
       return parseInt(str)
@@ -42,27 +41,27 @@ fs.readFile('input.txt', 'utf-8', (err, data) => {
   let singles = []
   let morethanSingle = []
 
-  let sort = splitEachIndexAndReturnNums.map((x) => {
-    if (x.length === 1) {
-      let singlesFound = x + x
+  function findSpecifics(arr) {
+    arr.map((x) => {
+      if (x.length === 1) {
+        let singlesFound = x + x
 
-      singles.push(parseInt(singlesFound))
-    }
-    if (x.length !== 1) {
-      let first = String(x[0])
-      let last = String(x[x.length - 1])
-      morethanSingle.push(parseInt(first + last))
-    }
-  })
-
+        singles.push(parseInt(singlesFound))
+      }
+      if (x.length !== 1) {
+        let first = String(x[0])
+        let last = String(x[x.length - 1])
+        morethanSingle.push(parseInt(first + last))
+      }
+    })
+  }
   let moreThanTotal = morethanSingle.reduce(
     (partialSum, a) => partialSum + a,
     0
   )
 
   let totalForSingles = singles.reduce((partialSum, a) => partialSum + a, 0)
-
   console.log(moreThanTotal + totalForSingles)
 
+  findSpecifics(splitEachIndexAndReturnNums)
 })
-
