@@ -11,8 +11,10 @@ fs.readFile('input.txt', 'utf-8', (err, data) => {
     throw err
   }
   // put each line into and array
+  // for part one
   let arrayOfData = data.split('\n')
 
+  // for part two
   let replaceLinesInArray = arrayOfData.map((ele) => {
     const newLine = ele
       .replaceAll('one', 'o1e')
@@ -55,13 +57,14 @@ fs.readFile('input.txt', 'utf-8', (err, data) => {
       }
     })
   }
+
+  findSpecifics(splitEachIndexAndReturnNums)
+
   let moreThanTotal = morethanSingle.reduce(
     (partialSum, a) => partialSum + a,
     0
   )
-
   let totalForSingles = singles.reduce((partialSum, a) => partialSum + a, 0)
-  console.log(moreThanTotal + totalForSingles)
 
-  findSpecifics(splitEachIndexAndReturnNums)
+  console.log(moreThanTotal + totalForSingles)
 })
