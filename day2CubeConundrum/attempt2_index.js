@@ -2,7 +2,7 @@ const fs = require('fs')
 
 const input = fs.readFileSync('input.txt', 'utf-8').split('\n')
 
-// Part !
+// Part 1
 let arrayThatContainsGameAndPhase = [] // [game id, phases]
 let storePhases = function seperateGameAndPhase(input) {
   let seperatingGameandPhases = input.map((eachGame) => {
